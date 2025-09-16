@@ -1,5 +1,5 @@
 # Vulkan API Learning Project  
-![Vulkan Logo](https://upload.wikimedia.org/wikipedia/commons/6/6a/Vulkan_API_logo.svg)
+![Vulkan Logo](https://upload.wikimedia.org/wikipedia/pt/thumb/f/f8/Vulkan_API_logo.svg/2560px-Vulkan_API_logo.svg.png)
 
 A study project in **C++** using the **Vulkan API** for graphics and compute. This project explores fundamental concepts of Vulkan programming, including:
 
