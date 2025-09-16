@@ -18,6 +18,11 @@ int main() {
     vkEnumerateInstanceExtensionProperties(nullptr, &glfwExtensionCount, nullptr);
     printf("Vulkan extensions supported: %d\n", glfwExtensionCount);
 
+    glm::vec4 testVec(1.0f, 0.0f, 0.0f, 1.0f);
+    glm::mat4 testMat(1.0f);
+
+    auto result = testMat * testVec;
+
     GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan Window", nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;
