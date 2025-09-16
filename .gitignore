@@ -1,9 +1,2 @@
-./includes
-./libs
-
-/libs
-/includes
-
-
-libs
-includes
+libs/
+includes/
