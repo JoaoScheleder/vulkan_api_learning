@@ -27,3 +27,10 @@ If you are compiling manually with `g++`/`clang++` (adjust paths as needed):
 
 ```bash
 g++ main.cpp -o vulkan_project -lvulkan
+```
+
+or
+
+```bash
+g++ main.cpp -I$VULKAN_SDK/include -L$VULKAN_SDK/lib -lvulkan -lglfw -o main
+```

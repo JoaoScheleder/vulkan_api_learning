@@ -7,9 +7,30 @@
 #include "includes/GLM/mat4x4.hpp"
 
 #include <stdio.h>
+#include <iostream>
 
 int main() {
     // Your code here
-    printf("Hello, World!\n");
+    glfwInit();
+    glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);\
+
+    uint32_t glfwExtensionCount = 0;
+    vkEnumerateInstanceExtensionProperties(nullptr, &glfwExtensionCount, nullptr);
+    printf("Vulkan extensions supported: %d\n", glfwExtensionCount);
+
+    GLFWwindow* window = glfwCreateWindow(800, 600, "Vulkan Window", nullptr, nullptr);
+    if (!window) {
+        std::cerr << "Failed to create GLFW window" << std::endl;
+        return -1;
+    }
+    printf("GLFW window created successfully\n");
+
+    while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
+    }
+
+    glfwDestroyWindow(window);
+    glfwTerminate();
+
     return 0;
 }
