@@ -6,21 +6,22 @@
 #include <stdexcept>
 #include <vector>
 
-class VulkanRenderer {
+class VulkanRenderer
+{
 public:
-    VulkanRenderer(GLFWwindow* window);
+    VulkanRenderer(GLFWwindow *window);
 
-    int init(GLFWwindow* newWindow);
+    int init(GLFWwindow *newWindow);
 
     ~VulkanRenderer();
 
 private:
-    GLFWwindow* window;
+    GLFWwindow *window;
     VkInstance instance;
 
-    //Vulkan Functions
+    // Vulkan Functions
     void createInstance();
 
-    // - Support functions 
-    bool checkInstanceExtensionSupport(std::vector<const char*>* extensions);
+    // - Support functions
+    bool checkInstanceExtensionSupport(std::vector<const char *> *extensions);
 };

@@ -7,10 +7,11 @@
 #include <vector>
 #include "../includes/VulkanRenderer.h"
 
-GLFWwindow* window;
-VulkanRenderer* vulkanRenderer;
+GLFWwindow *window;
+VulkanRenderer *vulkanRenderer;
 
-void initWindow (std::string wName = "Test window", const int width = 800 , const int height = 600) {
+void initWindow(std::string wName = "Test window", const int width = 800, const int height = 600)
+{
     // Init GLFW
     glfwInit();
     // Set GLFW to not create an OpenGL context
@@ -21,18 +22,21 @@ void initWindow (std::string wName = "Test window", const int width = 800 , cons
     window = glfwCreateWindow(width, height, wName.c_str(), nullptr, nullptr);
 }
 
-int main () {
+int main()
+{
     initWindow();
 
     // Create vulkan renderer instance
     vulkanRenderer = new VulkanRenderer(window);
-    if (vulkanRenderer->init(window) == EXIT_FAILURE) {
+    if (vulkanRenderer->init(window) == EXIT_FAILURE)
+    {
         printf("Failed to initialize Vulkan renderer\n");
         return EXIT_FAILURE;
     }
 
     // loop until closed
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window))
+    {
         glfwPollEvents();
     }
 
