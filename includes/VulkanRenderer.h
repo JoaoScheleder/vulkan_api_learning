@@ -19,7 +19,7 @@ private:
     GLFWwindow *window;
     VkInstance instance;
 
-    // Vulkan Functions
+    // - Vulkan Functions
     void createInstance();
 
     // - Support functions
