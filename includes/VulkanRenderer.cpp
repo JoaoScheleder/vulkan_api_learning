@@ -20,6 +20,9 @@ int VulkanRenderer::init(GLFWwindow *newWindow)
         return EXIT_FAILURE;
     }
     return 0;
+}
+void VulkanRenderer::cleanup() {
+    vkDestroyInstance(instance, nullptr);
 };
 
 VulkanRenderer::~VulkanRenderer()
@@ -79,6 +82,26 @@ void VulkanRenderer::createInstance()
         throw std::runtime_error("Failed to create Vulkan instance");
     }
 }
+void VulkanRenderer::getPhysicalDevice()
+{
+    // Enumerate physical devices
+    uint32_t deviceCount = 0;
+    vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
+
+    // if no devices found, throw error
+    if (deviceCount == 0)
+    {
+        throw std::runtime_error("Failed to find GPUs with Vulkan support");
+    }
+
+    // get list of physical devices
+    std::vector<VkPhysicalDevice> devices(deviceCount);
+    vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
+
+    // TEMP: just pick the first device
+    mainDevice.physicalDevice = devices[0];
+
+}
 bool VulkanRenderer::checkInstanceExtensionSupport(std::vector<const char *> *extensions)
 {
     uint32_t extensionCount = 0;
@@ -107,4 +130,21 @@ bool VulkanRenderer::checkInstanceExtensionSupport(std::vector<const char *> *ex
     }
 
     return true;
-};
+}
+bool VulkanRenderer::checkDeviceSuitability(VkPhysicalDevice device)
+{
+
+    // // Information about the device itself (ID, name, type, etc.)
+    // VkPhysicalDeviceProperties deviceProperties;
+    // vkGetPhysicalDeviceProperties(device, &deviceProperties);
+
+    // // Check if the device is suitable for our needs
+    // if (deviceProperties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU)
+    // {
+    //     return true;
+    // }
+
+    // return false;
+
+    return true;
+}
