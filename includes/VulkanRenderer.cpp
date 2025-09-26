@@ -98,8 +98,14 @@ void VulkanRenderer::getPhysicalDevice()
     std::vector<VkPhysicalDevice> devices(deviceCount);
     vkEnumeratePhysicalDevices(instance, &deviceCount, devices.data());
 
-    // TEMP: just pick the first device
-    mainDevice.physicalDevice = devices[0];
+    for (const auto &device : devices)
+    {
+        if (checkDeviceSuitability(device))
+        {
+            mainDevice.physicalDevice = device;
+            break;
+        }
+    }
 
 }
 bool VulkanRenderer::checkInstanceExtensionSupport(std::vector<const char *> *extensions)
@@ -146,7 +152,9 @@ bool VulkanRenderer::checkDeviceSuitability(VkPhysicalDevice device)
 
     // return false;
 
-    return true;
+    QueueFamilyIndices indices = getQueueFamilies(device);
+
+    return indices.isComplete();
 }
 
 QueueFamilyIndices VulkanRenderer::getQueueFamilies(VkPhysicalDevice device)
@@ -162,7 +170,7 @@ QueueFamilyIndices VulkanRenderer::getQueueFamilies(VkPhysicalDevice device)
     int i = 0;
     for (const auto &queueFamily : queueFamilies)
     {
-        if (queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
+        if (queueFamily.queueCount > 0 && queueFamily.queueFlags & VK_QUEUE_GRAPHICS_BIT)
         {
             indices.graphicsFamily = i;
         }
