@@ -1,7 +1,8 @@
 #pragma once
 
 #define GLFW_INCLUDE_VULKAN
-#include "../includes/glfw3.h"
+#include "glfw3.h"
+#include "Utilities.h"
 
 #include <stdexcept>
 #include <vector>
@@ -31,6 +32,10 @@ private:
     void getPhysicalDevice();
     
     // - Support functions
+
     bool checkInstanceExtensionSupport(std::vector<const char *> *extensions);
     bool checkDeviceSuitability(VkPhysicalDevice device);
+
+    // -- Getter functions
+    QueueFamilyIndices getQueueFamilies(VkPhysicalDevice device);
 };
